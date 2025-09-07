@@ -8,9 +8,10 @@ interface HeaderProps {
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }
 
-export default function Header({ books, setBooks }: HeaderProps) {
+export default function Header({books, setBooks }: HeaderProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [input, setInput] = useState<{ [key: string]: string }>({});
+
   const statusOptions = [
     { label: "Có sẵn", value: "available" },
     { label: "Hết hàng", value: "out_of_stock" },
@@ -28,6 +29,8 @@ export default function Header({ books, setBooks }: HeaderProps) {
     []
   );
 
+
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newBook: Book = {
@@ -42,7 +45,7 @@ export default function Header({ books, setBooks }: HeaderProps) {
       status: "available",
     };
 
-    setBooks([...books, newBook]);
+    setBooks([...books, newBook]); 
     setInput({
       title: "",
       author: "",
@@ -57,7 +60,7 @@ export default function Header({ books, setBooks }: HeaderProps) {
 
   const showModal = () => {
     setIsModalOpen(true);
-     setInput({
+    setInput({
       title: "",
       author: "",
       genre: "",
@@ -216,7 +219,7 @@ export default function Header({ books, setBooks }: HeaderProps) {
           <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
             <label style={{ fontWeight: 600 }}>Tên*</label>
             <input
-             value={input.title || ""}
+              value={input.title || ""}
               type="text"
               placeholder="Tên sách"
               onChange={handleChange}
